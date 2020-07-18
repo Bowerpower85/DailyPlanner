@@ -1,7 +1,8 @@
 body {
-    font-family: 'Open Sans', sans-serif;
+    font-family: cursive;
     font-size: 16px;
     line-height: 1;
+    /* background-image: url(/Assets/foamy-ocean-waves.jpeg); */
   }
   
   textarea{
@@ -25,15 +26,19 @@ body {
     white-space: pre-wrap;
   }
   
-  .time-block{
+  .timeBlock{
     text-align: center;
     border-radius: 15px;
+    background-color: #eedddd;
+    border-width: .5rem;
+    border-color: rosybrown;
   }
   
   .row {
     white-space: pre-wrap;
     height: 80px;
     border-top: 1px solid white;;
+    justify-content: space-between;
   }
   
   .hour {
@@ -42,6 +47,9 @@ body {
     border-top: 1px dashed #000000;
   }
   
+  span {
+    text-align: center;
+  }
   .past {
     background-color: #d3d3d3;
     color: white;
@@ -63,6 +71,7 @@ body {
     border-bottom-right-radius: 15px;
     background-color: #06AED5;
     color: white;
+    
   }
   
   .saveBtn i:hover {
