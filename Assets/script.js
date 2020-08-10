@@ -4,16 +4,17 @@ $(document).ready(function() {
     $("#currentDay").append(currentDay);
 
     // Variables for time
+    const current = moment();
     const nineAM = moment("9:00", ["h:mm a"]);
     const tenAM = moment("10:00", ["h:mm a"]);
     const elevenAM = moment("11:00", ["h:mm a"]);
     const twelvePM = moment("12:00", ["h:mm A"]);
-    const onePM = moment("1:00", ["h:mm A"]);
-    const twoPM = moment("2:00", ["h:mm A"]);
-    const threePM = moment("15:00", ["HH:mm A"]);
-    const fourPM = moment("4:00", ["h:mm A"]);
-    const fivePM = moment("5:00", ["h:mm A"]);
-    const sixPM = moment("6:00", ["h:mm A"]);
+    const onePM = moment("13:00", ["HH:mm A"]);
+    const twoPM = moment("14:00", ["HH:mm"]);
+    const threePM = moment("15:00", ["HH:mm"]);
+    const fourPM = moment("16:00", ["HH:mm A"]);
+    const fivePM = moment("17:00", ["HH:mm A"]);
+    const sixPM = moment("18:00", ["HH:mm A"]);
 
     // Variables to change color as timeblocks change from past to presrnt to future.
     const nine = $(".nine");
@@ -25,7 +26,6 @@ $(document).ready(function() {
     const three = $(".three");
     const four = $(".four");
     const five = $(".five");
-    const current = moment();
     
     // Variables to pull saved tasks from local Storage.
     const toDo9 = localStorage.getItem("9amToDo");
@@ -87,22 +87,77 @@ $(document).ready(function() {
       $("#5pmToDo").val(toDo5);
     }
 
-    if (nineAM.isBefore(current)) {
-      $(nine).addClass("past");
-    } else if (nineAM.isAfter(nineAM) && current.isBefore(tenAM) || nineAM === now) {
+    if (nineAM.isAfter(current)) {
+      $(nine).addClass("future");
+    } else if (current.isAfter(nineAM) && current.isBefore(tenAM) || nineAM === current) {
       $(nine).addClass("present");
     } else{
-      $(nine).addClass("future");
+      $(nine).addClass("past");
     }
 
-    if (threePM.isBefore(current)) {
-      $(three).addClass("past");
-    } else if (threePM.isAfter(threePM) && current.isBefore(fourPM) || threePM === current) {
+    if (tenAM.isAfter(current)) {
+      $(ten).addClass("future");
+    } else if (current.isAfter(tenAM) && current.isBefore(elevenAM) || tenAM === current) {
+      $(ten).addClass("present");
+    } else{
+      $(ten).addClass("past");
+    }
+
+    if (elevenAM.isAfter(current)) {
+      $(eleven).addClass("future");
+    } else if (current.isAfter(elevenAM) && current.isBefore(twelvePM) || tenAM === current) {
+      $(eleven).addClass("present");
+    } else{
+      $(eleven).addClass("past");
+    }
+
+    if (twelvePM.isAfter(current)) {
+      $(twelve).addClass("future");
+    } else if (current.isAfter(twelvePM) && current.isBefore(onePM) || twelvePM === current) {
+      $(twelve).addClass("present");
+    } else{
+      $(twelve).addClass("past");
+    }
+
+    if (onePM.isAfter(current)) {
+      $(one).addClass("future");
+    } else if (current.isAfter(onePM) && current.isBefore(twoPM) || onePM === current) {
+      $(one).addClass("present");
+    } else{
+      $(one).addClass("past");
+    }
+
+    if (twoPM.isAfter(current)) {
+      $(two).addClass("future");
+    } else if (current.isAfter(twoPM) && current.isBefore(threePM) || twoPM === current) {
+      $(two).addClass("present");
+    } else{
+      $(two).addClass("past");
+    }
+
+    if (threePM.isAfter(current)) {
+      (three).addClass("future");
+    } else if (current.isAfter(threePM) && current.isBefore(fourPM) || threePM === current) {
       $(three).addClass("present");
     } else{
-      $(three).addClass("future");
+      $(three).addClass("past")
     }
-    console.log(current);
+
+    if (fourPM.isAfter(current)) {
+      $(four).addClass("future");
+    } else if (current.isAfter(fourPM) && current.isBefore(fivePM) || fourPM === current) {
+      $(four).addClass("present");
+    } else{
+      $(four).addClass("past");
+    }
+    
+    if (fivePM.isBefore(current)) {
+      $(five).addClass("past");
+    } else if (current.isAfter(fivePM) && current.isBefore(sixPM) || fivePM === current) {
+      $(five).addClass("present");
+    } else{
+      $(five).addClass("future");
+    }
 })
 
 
