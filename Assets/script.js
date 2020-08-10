@@ -4,15 +4,16 @@ $(document).ready(function() {
     $("#currentDay").append(currentDay);
 
     // Variables for time
-    const nineAM = moment("9:00", ["h:mm"]);
-    const tenAM = moment("10:00", ["h:mm"]);
-    const elevenAM = moment("11:00", ["h:mm"]);
-    const twelvePM = moment("12:00", ["h:mm"]);
-    const onePM = moment("1:00", ["h:mm"]);
-    const twoPM = moment("2:00", ["h:mm"]);
-    const threePM = moment("3:00", ["h:mm"]);
-    const fourPM = moment("4:00", ["h:mm"]);
-    const fivePM = moment("5:00", ["h:mm"]);
+    const nineAM = moment("9:00", ["h:mm a"]);
+    const tenAM = moment("10:00", ["h:mm a"]);
+    const elevenAM = moment("11:00", ["h:mm a"]);
+    const twelvePM = moment("12:00", ["h:mm A"]);
+    const onePM = moment("1:00", ["h:mm A"]);
+    const twoPM = moment("2:00", ["h:mm A"]);
+    const threePM = moment("15:00", ["HH:mm A"]);
+    const fourPM = moment("4:00", ["h:mm A"]);
+    const fivePM = moment("5:00", ["h:mm A"]);
+    const sixPM = moment("6:00", ["h:mm A"]);
 
     // Variables to change color as timeblocks change from past to presrnt to future.
     const nine = $(".nine");
@@ -24,6 +25,7 @@ $(document).ready(function() {
     const three = $(".three");
     const four = $(".four");
     const five = $(".five");
+    const current = moment();
     
     // Variables to pull saved tasks from local Storage.
     const toDo9 = localStorage.getItem("9amToDo");
@@ -84,6 +86,23 @@ $(document).ready(function() {
     if (toDo5 !== null) {
       $("#5pmToDo").val(toDo5);
     }
+
+    if (nineAM.isBefore(current)) {
+      $(nine).addClass("past");
+    } else if (nineAM.isAfter(nineAM) && current.isBefore(tenAM) || nineAM === now) {
+      $(nine).addClass("present");
+    } else{
+      $(nine).addClass("future");
+    }
+
+    if (threePM.isBefore(current)) {
+      $(three).addClass("past");
+    } else if (threePM.isAfter(threePM) && current.isBefore(fourPM) || threePM === current) {
+      $(three).addClass("present");
+    } else{
+      $(three).addClass("future");
+    }
+    console.log(current);
 })
 
 
